@@ -4,13 +4,15 @@ namespace Fruty\Voters;
 
 use ArrayObject;
 use CallbackFilterIterator;
+use Countable;
 use Fruty\Voters\Contracts\VoterInterface;
+use Traversable;
 
 /**
  * Class VoterCollection
  * @package Fruty\Voters
  */
-class VoterCollection
+class VoterCollection implements Countable
 {
     /**
      * @var ArrayObject
@@ -20,11 +22,18 @@ class VoterCollection
     /**
      * VoterCollection constructor.
      *
-     * @param mixed $input
+     * @param array|Traversable $voters
      */
-    public function __construct($input = null)
+    public function __construct($voters = [])
     {
-        $this->voters = new ArrayObject($input);
+        $this->voters = new ArrayObject();
+
+        /*
+         * Check is all input elements implements VoterInterface instance.
+         */
+        foreach ($voters as $voter) {
+            $this->push($voter);
+        }
     }
 
     /**
@@ -74,9 +83,8 @@ class VoterCollection
      */
     public function filter(callable $callback)
     {
-        return new static(new CallbackFilterIterator($this->iterator(), $callback));
+        return (new static())->forceFill(new CallbackFilterIterator($this->iterator(), $callback));
     }
-
     /**
      * Map voters.
      *
@@ -104,5 +112,17 @@ class VoterCollection
         }
 
         return $map;
+    }
+
+    /**
+     * Force filling.
+     *
+     * Using only for internal needs, when you exactly know that all given voters implements of VoterInterface.
+     * 
+     * @param array|Traversable $voters
+     */
+    private function forceFill($voters)
+    {
+        $this->voters = $voters;
     }
 }
