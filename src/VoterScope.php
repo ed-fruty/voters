@@ -1,14 +1,12 @@
 <?php
 
-namespace Voter;
-
-use Fruty\Voters\Contracts\VoterScopeInterface;
+namespace Fruty\Voters;
 
 /**
  * Class VoterScope
  * @package Voter
  */
-class VoterScope implements VoterScopeInterface
+class VoterScope implements Contracts\VoterScopeInterface
 {
     /**
      * @var string

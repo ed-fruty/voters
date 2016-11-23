@@ -2,11 +2,9 @@
 
 namespace Fruty\Voters;
 
-use CallbackFilterIterator;
 use Fruty\Voters\Contracts\DecisionManagerInterface;
 use Fruty\Voters\Contracts\DecisionStrategyInterface;
 use Fruty\Voters\Contracts\VoterInterface;
-use Fruty\Voters\Contracts\VoterScopeInterface;
 use Fruty\Voters\Strategies\MoreVotesDecisionStrategy;
 
 /**

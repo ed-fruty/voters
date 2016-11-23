@@ -1,14 +1,15 @@
 <?php
 
-namespace Voter\Strategies;
+namespace Fruty\Voters\Strategies;
 
-use Voter\Contracts\VoterInterface;
-use Voter\Contracts\VoterScopeInterface;
-use Voter\VoterCollection;
+use Fruty\Voters\Contracts\PollingInterface;
+use Fruty\Voters\Contracts\VoterInterface;
+use Fruty\Voters\Contracts\VoterScopeInterface;
+use Fruty\Voters\VoterCollection;
 
 /**
  * Class VoteStrategy
- * @package Voter\Strategies
+ * @package Fruty\Voters\Strategies
  */
 class MoreVotesDecisionStrategy extends AbstractDecisionStrategy
 {
@@ -16,12 +17,12 @@ class MoreVotesDecisionStrategy extends AbstractDecisionStrategy
      * Make a decision.
      *
      * @param VoterCollection $voters
-     * @param string $action
-     * @param object $subject
      * @param VoterScopeInterface $scope
+     * @param PollingInterface $polling
+     * 
      * @return bool
      */
-    public function decide(VoterCollection $voters, $action, $subject, VoterScopeInterface $scope)
+    public function decide(VoterCollection $voters, VoterScopeInterface $scope, PollingInterface $polling)
     {
         $granted = 0;
         $denied  = 0;
@@ -30,8 +31,8 @@ class MoreVotesDecisionStrategy extends AbstractDecisionStrategy
         foreach ($voters->iterator() as $voter) {
             
             // Get voter voice value
-            $weight = $this->getVoterWeight($voter);
-            $vote = $voter->vote($action, $subject, $scope);
+            $weight = 0; // $this->getVoterWeight($voter);
+            $vote = false; // $voter->vote($action, $subject, $scope);
             
             switch (true) {
 

@@ -2,6 +2,7 @@
 
 namespace Fruty\Voters;
 
+use ArrayObject;
 use CallbackFilterIterator;
 use Fruty\Voters\Contracts\VoterInterface;
 
@@ -12,7 +13,7 @@ use Fruty\Voters\Contracts\VoterInterface;
 class VoterCollection
 {
     /**
-     * @var \ArrayObject
+     * @var ArrayObject
      */
     protected $voters;
 
@@ -23,7 +24,7 @@ class VoterCollection
      */
     public function __construct($input = null)
     {
-        $this->voters = new \ArrayObject($input);
+        $this->voters = new ArrayObject($input);
     }
 
     /**

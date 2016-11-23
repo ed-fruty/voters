@@ -1,10 +1,10 @@
 <?php
 
-namespace Fruty\Voter;
+namespace Fruty\Voters;
 
-use Fruty\Voter\Contracts\CommitteeInterface;
-use Fruty\Voter\Contracts\PollingInterface;
-use Fruty\Voter\Contracts\VoterScopeInterface;
+use Fruty\Voters\Contracts\CommitteeInterface;
+use Fruty\Voters\Contracts\PollingInterface;
+use Fruty\Voters\Contracts\VoterScopeInterface;
 
 /**
  * Class Committee
